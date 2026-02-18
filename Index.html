@@ -64,7 +64,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
 #turn-name{font-family:"Fredoka One",cursive;font-size:1.05rem;color:#e2e8f0;flex:1;text-align:center;}
 #roll-ctr{background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.22);border-radius:7px;padding:2px 9px;font-family:"Fredoka One",cursive;font-size:.8rem;color:#93c5fd;white-space:nowrap;}
 .rcn{color:#60a5fa;}
-#timer-box{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.24);border-radius:8px;padding:3px 9px;font-family:"Fredoka One",cursive;font-size:.76rem;color:#4ade80;white-space:nowrap;flex-shrink:0;min-width:62px;text-align:center;}
+#timer-box{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.24);border-radius:8px;padding:3px 9px;font-family:"Fredoka One",cursive;font-size:.76rem;color:#4ade80;white-space:nowrap;flex-shrink:0;width:72px;min-width:72px;max-width:72px;text-align:center;}
 #top-controls{display:flex;gap:6px;align-items:center;flex-shrink:0;}
 #overshoot-wrap{display:flex;align-items:stretch;border:1.5px solid rgba(255,255,255,.12);border-radius:10px;overflow:hidden;flex-shrink:0;}
 .ov-btn{flex:1;width:62px;padding:5px 0;font-family:"Fredoka One",cursive;font-size:.68rem;color:rgba(255,255,255,.35);cursor:pointer;background:transparent;border:none;text-align:center;-webkit-tap-highlight-color:transparent;}
@@ -165,7 +165,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
 #toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
 .confetti-piece{position:fixed;pointer-events:none;z-index:700;animation:confettiFall linear forwards;}
 @keyframes confettiFall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
-#game-logo{font-size:.72rem;}#turn-pill{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.18);border-radius:50px;padding:7px 18px;flex:1;max-width:380px;margin:0 auto;}#turn-name{font-family:"Fredoka One",cursive;font-size:1.05rem;color:#e2e8f0;flex:1;text-align:center;}.ov-btn{width:50px;font-size:.6rem;}.bsw-btn{width:46px;font-size:.6rem;}#timer-box{font-size:.64rem;min-width:50px;}#left-col,#dice-wrap{width:78px;height:78px;}#dice-face{font-size:3.4rem;}#roll-btn{font-size:.92rem;padding:10px;}}
+#game-logo{font-size:.72rem;}#turn-pill{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.18);border-radius:50px;padding:7px 18px;flex:1;max-width:380px;margin:0 auto;}#turn-name{font-family:"Fredoka One",cursive;font-size:1.05rem;color:#e2e8f0;flex:1;text-align:center;}.ov-btn{width:50px;font-size:.6rem;}.bsw-btn{width:46px;font-size:.6rem;}#timer-box{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.24);border-radius:8px;padding:3px 9px;font-family:"Fredoka One",cursive;font-size:.76rem;color:#4ade80;white-space:nowrap;flex-shrink:0;width:72px;min-width:72px;max-width:72px;text-align:center;}#left-col,#dice-wrap{width:78px;height:78px;}#dice-face{font-size:3.4rem;}#roll-btn{font-size:.92rem;padding:10px;}}
 #dice-wrap{width:62px;height:62px;}#dice-face{font-size:2.8rem;}}
 
 #game-credit{display:flex;align-items:center;gap:5px;opacity:.75;pointer-events:none;}
@@ -190,8 +190,8 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
   50%{opacity:1;transform:translateX(-50%) scaleX(1.2);}
 }
 
-#end-game-btn{background:rgba(239,68,68,.12);border:1.5px solid rgba(239,68,68,.35);border-radius:8px;padding:5px 10px;color:#f87171;font-size:.68rem;font-weight:800;cursor:pointer;white-space:nowrap;font-family:"Fredoka One",cursive;letter-spacing:.5px;transition:all .2s;flex-shrink:0;-webkit-tap-highlight-color:transparent;}
-#end-game-btn:hover{background:rgba(239,68,68,.25);border-color:#f87171;box-shadow:0 0 12px rgba(239,68,68,.4);}
+#end-game-btn{flex:1;padding:5px 10px;font-family:"Fredoka One",cursive;font-size:.68rem;color:#f87171;cursor:pointer;background:transparent;border:none;text-align:center;-webkit-tap-highlight-color:transparent;white-space:nowrap;}
+
 #confirm-end-overlay{position:fixed;inset:0;z-index:550;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);}
 #confirm-end-overlay.show{display:flex;}
 #confirm-end-card{background:linear-gradient(145deg,rgba(8,18,45,.99),rgba(4,10,24,.99));border:1.5px solid rgba(239,68,68,.4);border-radius:20px;padding:32px 38px;text-align:center;animation:popIn .35s cubic-bezier(.34,1.56,.64,1);max-width:340px;width:88%;}
@@ -364,156 +364,89 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
      [HOF BAR]
 ═══════════════════════════════════════════════════ */
 @media (orientation:portrait) {
-  #top-bar{
-    flex-wrap:wrap;
-    padding:4px 8px 3px;
-    gap:3px;
-    min-height:auto;
-    row-gap:3px;
-  }
+  #top-bar{flex-wrap:wrap;padding:4px 8px 3px;gap:3px;min-height:auto;row-gap:3px;}
   #game-logo{font-size:.68rem;order:1;}
   #turn-pill{order:2;flex:1;padding:3px 8px;max-width:none;min-width:0;}
   #turn-name{font-size:.72rem;}
   #roll-ctr{font-size:.72rem;}
-  #top-controls{
-    order:3;width:100%;
-    justify-content:space-between;
-    gap:4px;flex-wrap:nowrap;
-  }
+  #top-controls{order:3;width:100%;justify-content:space-between;gap:4px;flex-wrap:nowrap;}
   .ov-btn{width:40px;font-size:.55rem;padding:4px 0;}
   .bsw-btn{width:38px;font-size:.55rem;padding:4px 0;}
-  #timer-box{font-size:.6rem;min-width:44px;padding:2px 5px;flex-shrink:0;}
   #change-board-btn{font-size:.56rem;padding:3px 5px;flex-shrink:0;}
   #vol-btn,#fs-btn{width:26px;height:26px;flex-shrink:0;}
   #vol-btn svg,#fs-btn svg{width:15px;height:15px;}
-  #end-game-btn{font-size:.58rem;padding:4px 7px;flex-shrink:0;}
 
-  /* Play area becomes a column */
-  #play-area{
-    flex-direction:column;
-    padding:2px 4px;
-    gap:3px;
-    flex-wrap:nowrap;
-  }
+  /* Board: full width, 1:1 */
+  #play-area{flex-direction:column;padding:2px 4px;gap:3px;flex-wrap:nowrap;}
+  #center-col{order:1;flex:0 0 auto;width:100%;display:flex;align-items:flex-start;justify-content:center;min-height:0;}
+  #board-wrap{width:calc(100vw - 8px);height:calc(100vw - 8px);max-width:none;max-height:none;flex-shrink:0;}
 
-  /* Board at top, full width */
-  #center-col{
-    order:1;
-    flex:0 0 auto;
-    width:100%;
-    display:flex;
-    align-items:flex-start;
-    justify-content:center;
-    min-height:0;
-  }
-  #board-wrap{
-    width:calc(100vw - 8px);
-    height:calc(100vw - 8px);
-    max-width:none;
-    max-height:none;
-    flex-shrink:0;
-  }
+  /* Bottom row: fills all remaining space */
+  #bottom-row{display:flex !important;flex-direction:row;flex:1;min-height:0;gap:3px;order:2;overflow:hidden;align-items:stretch;}
 
-  /* bottom-row is a real flex row filling remaining space */
-  #bottom-row{
-    display:flex !important;
-    flex-direction:row;
-    flex:1;
-    min-height:0;
-    gap:3px;
-    order:2;
-    overflow:hidden;
-  }
-
-  /* p-col-center wraps left+right cols: dice on top, log below */
-  #p-col-center{
-    display:flex !important;
-    flex-direction:column;
-    flex:2;
-    min-width:0;
-    gap:3px;
-    overflow:hidden;
-  }
-  /* left-col inside p-col-center = log panel */
-  #left-col{
-    order:2;
-    width:100%;
-    flex:1;
-    min-height:0;
-    overflow:hidden;
-    display:flex;
-    flex-direction:column;
-  }
-  /* right-col inside p-col-center = dice panel */
-  #right-col{
-    order:1;
-    width:100%;
-    flex:0 0 auto;
-    display:flex;
-    flex-direction:column;
-    gap:3px;
-    background:var(--panel);
-    border:1px solid var(--border);
-    border-radius:10px;
-    padding:5px 8px;
-  }
-
-  /* Player side columns */
+  /* Side columns: 1/4 each */
   #p-col-left{
-    display:flex !important;
-    flex:1;
-    flex-direction:column;
-    gap:3px;
-    background:var(--panel);
-    border:1px solid var(--border);
-    border-radius:10px;
-    padding:4px 3px;
-    min-width:0;
-    overflow:hidden;
+    display:flex !important;flex:1;flex-direction:column;gap:3px;
+    background:var(--panel);border:1px solid var(--border);border-radius:10px;
+    padding:4px 3px;min-width:0;overflow:hidden;
   }
   #p-col-right{
-    display:flex !important;
-    flex:1;
-    flex-direction:column;
-    gap:3px;
-    background:var(--panel);
-    border:1px solid var(--border);
-    border-radius:10px;
-    padding:4px 3px;
-    min-width:0;
-    overflow:hidden;
+    display:flex !important;flex:1;flex-direction:column;gap:3px;
+    background:var(--panel);border:1px solid var(--border);border-radius:10px;
+    padding:4px 3px;min-width:0;overflow:hidden;
   }
-  #p-players-left,#p-players-right{
-    display:flex;
-    flex-direction:column;
-    gap:3px;
-    flex:1;
-    min-height:0;
+  #p-players-left,#p-players-right{display:flex;flex-direction:column;gap:3px;flex:1;min-height:0;}
+
+  /* Center column: 2/4 wide, column: dice(2/3) + log(1/3) */
+  #p-col-center{
+    display:flex !important;flex:2;flex-direction:column;
+    min-width:0;gap:3px;overflow:hidden;
   }
 
-  /* Log panel */
+  /* right-col = DICE PANEL (top 2/3 of center) — same landscape style */
+  #right-col{
+    order:1;flex:0 0 auto;width:100%;
+    display:flex;flex-direction:column;
+    gap:4px;
+    background:#fff;
+    border:2px solid rgba(249,115,22,.28);
+    border-radius:16px;
+    padding:8px 10px;
+    align-items:center;
+  }
+  /* left-col = LOG (bottom 1/3 of center) */
+  #left-col{
+    order:2;flex:1;width:100%;
+    min-height:0;overflow:hidden;
+    display:flex;flex-direction:column;
+  }
   #log-panel{padding:4px 6px;border-radius:8px;flex:1;min-height:0;overflow-y:auto;height:100%;}
   #log-panel h3{display:none;}
   .log-entry{font-size:.55rem;line-height:1.2;padding:2px 3px;}
 
-  /* Dice horizontal */
+  /* Dice panel contents — large dice, centered */
   #dice-panel{
-    flex-direction:row;
-    padding:4px 6px;
-    gap:6px;
-    align-items:center;
-    background:none;
-    border:none;
-    width:100%;
+    background:none;border:none;padding:0;
+    flex-direction:column;align-items:center;
+    width:100%;gap:4px;
+    display:flex;flex-shrink:0;
+  }
+  #dice-wrap{
+    width:clamp(72px,22vw,110px);
+    height:clamp(72px,22vw,110px);
+    flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+  }
+  #dice-face{font-size:clamp(3.2rem,14vw,5rem);}
+  #dice-ring{display:none;}
+  #dice-val-text{font-size:.68rem;color:#09152a;font-weight:800;min-height:auto;flex-shrink:0;}
+  #bonus-badge{font-size:.58rem;padding:2px 5px;flex-shrink:0;}
+  #roll-btn{
+    font-size:.85rem;padding:11.5px 6px;width:100%;
     flex-shrink:0;
   }
-  #dice-wrap{width:44px;height:44px;flex-shrink:0;}
-  #dice-face{font-size:2rem;}
-  #dice-val-text{font-size:.62rem;min-height:auto;flex:1;text-align:center;}
-  #bonus-badge{font-size:.54rem;padding:2px 4px;}
-  #roll-btn{font-size:.76rem;padding:8px 10px;flex:2;white-space:nowrap;}
 
-  /* Hide elements not needed in portrait */
+  /* Portrait player strip: hidden (using side cols) */
   #portrait-player{display:none;}
   #players-list{display:none;}
 
@@ -531,6 +464,57 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
   #dice-wrap{width:38px;height:38px;}
   #dice-face{font-size:1.7rem;}
   #roll-btn{font-size:.68rem;padding:7px 6px;}
+}
+
+
+#end-wrap{display:flex;align-items:stretch;border:1.5px solid rgba(239,68,68,.35);border-radius:10px;overflow:hidden;flex-shrink:0;background:rgba(239,68,68,.06);}
+#end-game-btn:hover,#end-game-btn:active{background:rgba(239,68,68,.18);color:#fca5a5;}
+
+/* ── Compact logo when setup panel is open ── */
+.setup-open #logo-block{height:clamp(170px,40vh,290px);padding-top:clamp(16px,4vh,36px);padding-bottom:clamp(2px,1vh,8px);}
+.setup-open #logo-sharp{width:min(240px,34vw);height:min(240px,34vw);}
+.setup-open #logo-ghost{width:min(300px,42vw);height:min(300px,42vw);}
+.setup-open #logo-glow-ring{width:min(290px,40vw);height:min(290px,40vw);}
+.setup-open #logo-glow-outer{width:min(380px,52vw);height:min(380px,52vw);}
+.setup-open #logo-title{font-size:clamp(1.15rem,3vw,1.7rem);margin-top:8px;}
+.setup-open #logo-subtitle{font-size:clamp(.82rem,1.8vw,1.05rem);margin-top:3px;}
+/* Transition for smooth shrink */
+#logo-block,#logo-sharp,#logo-ghost,#logo-glow-ring,#logo-glow-outer,#logo-title,#logo-subtitle{
+  transition:height .4s ease, width .4s ease, font-size .4s ease, padding .4s ease;
+}
+
+
+/* ── iPhone / tall screen (aspect > 16/9): center game in 9:16 box ── */
+@media (min-aspect-ratio: 9/19) and (orientation: portrait) {
+  html, body {
+    height: 100%;
+    background: var(--navy);
+  }
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100dvh;
+    overflow: hidden;
+  }
+  /* Game wrapper constrained to 9:16 */
+  #start-screen {
+    position: relative;
+    inset: auto;
+    width: 100vw;
+    max-width: calc(100dvh * 9 / 16);
+    height: calc(100vw * 16 / 9);
+    max-height: 100dvh;
+    border-radius: 0;
+    overflow: hidden;
+  }
+  #game-screen {
+    width: 100vw;
+    max-width: calc(100dvh * 9 / 16);
+    height: calc(100vw * 16 / 9);
+    max-height: 100dvh;
+    margin: 0 auto;
+  }
 }
 
 </style>
@@ -590,7 +574,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
       <div id="change-board-btn">&#128193; Upload<input type="file" id="board-file-game" accept="image/*"></div>
       <button id="fs-btn" title="Full Screen"><svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg></button><button id="vol-btn" title="Toggle Sound">
   <svg id="vol-icon" viewBox="0 0 24 24"><path d="M11 5L6 9H3v6h3l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
-</button><button id="end-game-btn">&#128683; End</button><div id="timer-box">&#9201; 00:00</div>
+</button><div id="end-wrap"><button id="end-game-btn">&#128683; End</button></div><div id="timer-box">&#9201; 00:00</div>
     </div>
   </div>
   <div id="play-area">
@@ -814,6 +798,7 @@ buildNames();
 document.getElementById("begin-btn").addEventListener("click",function(){
   document.getElementById("step-start").style.display="none";
   document.getElementById("step-setup").style.display="flex";
+  document.getElementById("start-screen").classList.add("setup-open");
 });
 
 document.getElementById("bg-file").addEventListener("change",function(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(ev){document.getElementById("logo-sharp").src=ev.target.result;document.getElementById("logo-ghost").src=ev.target.result};r.readAsDataURL(f)});
@@ -828,7 +813,7 @@ document.getElementById("play-btn").addEventListener("click",function(){
   document.getElementById("start-screen").style.display="none";
   document.getElementById("game-screen").style.display="flex";
   document.getElementById("log-entries").innerHTML="";
-  clearPath();createTokens();placeTokens();updateBar();renderHOF();startTimer();
+  clearPath();createTokens();placeTokens();updateBar();updatePortraitPlayers();renderHOF();startTimer();
   addLog("Game started! Roll 6 for bonus!");
 });
 
@@ -837,7 +822,7 @@ document.getElementById("play-again-btn").addEventListener("click",function(){
   document.getElementById("timer-box").textContent="\u23F1 00:00";
   currentGamePositions=[];gamePositionCounter=0;
   document.getElementById("game-screen").style.display="none";document.getElementById("start-screen").style.display="flex";
-  document.getElementById("step-start").style.display="flex";document.getElementById("step-setup").style.display="none";
+  document.getElementById("step-start").style.display="flex";document.getElementById("step-setup").style.display="none";document.getElementById("start-screen").classList.remove("setup-open");
   document.querySelectorAll(".count-btn")[0].click();buildNames();document.getElementById("roll-btn").textContent="Roll \uD83C\uDFB2";
 });
 
@@ -1039,6 +1024,7 @@ document.getElementById("confirm-yes-btn").addEventListener("click",function(){
   document.getElementById("start-screen").style.display="flex";
   document.getElementById("step-start").style.display="flex";
   document.getElementById("step-setup").style.display="none";
+  document.getElementById("start-screen").classList.remove("setup-open");
   document.querySelectorAll(".count-btn")[0].click();
   buildNames();
   document.getElementById("roll-btn").textContent="Roll \uD83C\uDFB2";
