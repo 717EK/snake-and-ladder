@@ -239,7 +239,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
    PORTRAIT MOBILE — board top, controls bottom
 ═══════════════════════════════════════════ */
 @media (orientation:portrait), (max-width:600px) {
-  /* ── Top bar: 2-row layout to prevent cutting ── */
+  /* ── Top bar: 2-row layout ── */
   #top-bar{
     flex-wrap:wrap;
     padding:4px 8px 3px;
@@ -251,8 +251,8 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
   #turn-pill{order:2;flex:1;padding:3px 8px;max-width:none;min-width:0;}
   #turn-name{font-size:.72rem;}
   #roll-ctr{font-size:.72rem;}
-  /* Controls on second row — full width */
   #top-controls{
+    order:3;
     width:100%;
     justify-content:space-between;
     gap:4px;
@@ -267,88 +267,118 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
   #vol-btn svg,#fs-btn svg{width:15px;height:15px;}
   #end-game-btn{font-size:.58rem;padding:4px 7px;flex-shrink:0;}
 
-  /* ── Play area: board top, log+dice below as a row ── */
+  /* ── Play area: column, board + bottom row ── */
   #play-area{
     flex-direction:column;
     padding:4px 4px 2px;
-    gap:4px;
+    gap:0;
     align-items:stretch;
     overflow:hidden;
     flex-wrap:nowrap;
+    flex:1;
+    min-height:0;
   }
+
+  /* Board: full width, 1:1, takes exactly 100vw-8px square */
   #center-col{
+    order:1;
     width:100%;
     flex:0 0 auto;
     display:flex;
-    align-items:center;
+    align-items:flex-start;
     justify-content:center;
-    padding-top:4px;
+    padding:4px 0 0;
   }
   #board-wrap{
-    width:min(calc(100vw - 8px), calc(100dvh - 230px));
-    height:min(calc(100vw - 8px), calc(100dvh - 230px));
-    max-width:none;max-height:none;
+    width:calc(100vw - 8px);
+    height:calc(100vw - 8px);
+    max-width:none;
+    max-height:none;
     aspect-ratio:1/1;
-  }
-
-  /* Bottom row: log LEFT, dice+players RIGHT */
-  #left-col{
-    width:48%;
-    flex-direction:column;
-    gap:3px;
-    min-height:0;
-    flex:1 1 0;
-    overflow:hidden;
-  }
-  #right-col{
-    width:48%;
-    flex-direction:column;
-    gap:3px;
-    min-height:0;
-    flex:1 1 0;
-    overflow:hidden;
-  }
-
-  /* Make left+right sit side-by-side */
-  #play-area{flex-wrap:wrap;}
-  #left-col,#right-col{max-height:clamp(100px,24vh,160px);}
-  #center-col{flex-basis:100%;}
-
-  /* ── Log panel ── */
-  #log-panel{padding:4px 6px;border-radius:8px;height:100%;}
-  #log-panel h3{display:none;}
-  .log-entry{font-size:.57rem;line-height:1.25;padding:2px 3px;}
-
-  /* ── Dice panel: vertical compact ── */
-  #dice-panel{
-    flex-direction:column;
-    padding:5px 6px;
-    gap:4px;
-    border-radius:10px;
-    align-items:center;
-    width:100%;
     flex-shrink:0;
   }
-  #dice-wrap{width:52px;height:52px;flex-shrink:0;}
-  #dice-face{font-size:2.4rem;}
-  #dice-val-text{font-size:.68rem;min-height:auto;}
-  #bonus-badge{font-size:.6rem;padding:2px 5px;}
-  #roll-btn{font-size:.78rem;padding:7px 6px;width:100%;}
 
-  /* ── Players list ── */
-  #players-list{
-    padding:4px 5px;
+  /* Bottom row: fills ALL remaining space, log left + dice right */
+  #left-col{
+    order:2;
+    width:50%;
+    height:100%;
+    flex-direction:column;
+    gap:0;
+    min-height:0;
+    flex:1 1 0;
+    overflow:hidden;
+    padding:4px 2px 2px 4px;
+  }
+  #right-col{
+    order:3;
+    width:50%;
+    height:100%;
+    flex-direction:column;
+    gap:0;
+    min-height:0;
+    flex:1 1 0;
+    overflow:hidden;
+    padding:4px 4px 2px 2px;
+  }
+
+  /* Trick: make left+right appear as a row filling remaining height */
+  #play-area{flex-wrap:wrap;}
+  #center-col{flex-basis:100%;}
+  #left-col,#right-col{
+    max-height:none;
+    flex-basis:50%;
+    flex:1 1 0;
+    display:flex;
+  }
+
+  /* ── Log panel: fill left col ── */
+  #log-panel{
+    padding:5px 6px;
     border-radius:8px;
+    height:100%;
     flex:1;
     min-height:0;
     overflow-y:auto;
   }
-  #players-list h3{display:none;}
-  .pl-row{padding:3px 4px;margin-bottom:2px;gap:4px;}
-  .pl-dot-s{width:11px;height:11px;flex-shrink:0;}
-  .pl-name-s{font-size:.62rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:80px;}
-  .pl-pos-s{font-size:.52rem;}
-  .pl-turn-pip{width:4px;height:4px;}
+  #log-panel h3{display:none;}
+  .log-entry{font-size:.57rem;line-height:1.25;padding:2px 3px;}
+
+  /* ── Dice + player: fill right col, roll btn always visible ── */
+  #right-col{
+    flex-direction:column;
+    justify-content:flex-start;
+  }
+  #portrait-player{display:flex;margin-bottom:4px;flex-shrink:0;}
+  #dice-panel{
+    flex:1;
+    flex-direction:column;
+    padding:6px 8px;
+    gap:5px;
+    border-radius:10px;
+    align-items:center;
+    width:100%;
+    min-height:0;
+    justify-content:space-evenly;
+    overflow:hidden;
+  }
+  #dice-wrap{
+    width:clamp(44px,12vw,64px);
+    height:clamp(44px,12vw,64px);
+    flex-shrink:0;
+  }
+  #dice-face{font-size:clamp(2rem,8vw,2.8rem);}
+  #dice-val-text{font-size:.68rem;min-height:auto;flex-shrink:0;}
+  #bonus-badge{font-size:.6rem;padding:2px 5px;flex-shrink:0;}
+  #roll-btn{
+    font-size:.82rem;
+    padding:10px 6px;
+    width:100%;
+    flex-shrink:0;
+  }
+
+  /* ── Players list: hidden ── */
+  #players-list{display:none;}
 
   /* ── HOF bar compact ── */
   #hof-bar{padding:3px 8px;gap:5px;max-height:36px;}
@@ -359,6 +389,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
   #game-credit-logo{width:40px!important;}
   #game-credit span{font-size:.35rem!important;}
 }
+
 /* Very narrow phones */
 @media (max-width:380px) {
   #left-col,#right-col{max-height:clamp(80px,20vh,120px);}
@@ -367,6 +398,22 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
   .hof-card{min-width:72px;}
 }
 
+
+/* Portrait current-player strip — hidden in landscape */
+#portrait-player{
+  display:none;
+  align-items:center;
+  gap:7px;
+  padding:5px 8px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:9px;
+  flex-shrink:0;
+}
+#pp-dot{width:16px;height:16px;border-radius:50%;flex-shrink:0;}
+#pp-info{flex:1;min-width:0;}
+#pp-name{font-family:"Fredoka One",cursive;font-size:.82rem;color:#e2e8f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+#pp-pos{font-size:.58rem;color:#475569;font-weight:700;}
 </style>
 </head>
 <body>
@@ -431,6 +478,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
     <div id="left-col"><div id="log-panel"><h3>&#128203; Move Log</h3><div id="log-entries"></div></div></div>
     <div id="center-col"><div id="board-wrap"><img id="board-img" src="" alt="Board"><svg id="path-svg" viewBox="0 0 100 100" preserveAspectRatio="none"></svg><div id="token-overlay"></div></div></div>
     <div id="right-col">
+      <div id="portrait-player"><div id="pp-dot"></div><div id="pp-info"><div id="pp-name"></div><div id="pp-pos"></div></div></div>
       <div id="dice-panel">
         <div id="dice-wrap"><div id="dice-ring"></div><span id="dice-face">&#9856;</span></div>
         <div id="dice-val-text">Roll!</div>
@@ -563,7 +611,7 @@ async function stepMove(player,from,to){var steps=[],s;if(to>from){for(s=from+1;
 async function directMove(player,from,to,happy){drawLine(from,to,happy?"rgba(74,222,128,.9)":"rgba(248,113,113,.9)",false);if(happy){sfxLadder();}else{sfxSnake();}await sleep(380);player.pos=to;placeToken(player);await sleep(120);await landAnim(player.id,happy?"happy":"sad");Array.from(svg.children).forEach(function(l){l.style.transition="opacity .55s";l.style.opacity="0"});await sleep(600);clearPath()}
 async function fadePath(){Array.from(svg.children).forEach(function(l){l.style.transition="opacity .45s";l.style.opacity="0"});await sleep(500);clearPath()}
 function updateList(){var c=document.getElementById("pl-rows");c.innerHTML="";players.forEach(function(p,i){var isCur=i===ci&&!p.finished;var row=document.createElement("div");row.className="pl-row"+(isCur?" active-turn":"")+(p.finished?" done-turn":"");row.innerHTML='<div class="pl-dot-s" style="background:'+p.color+';border:1.5px solid '+p.color+';box-shadow:0 0 4px '+p.color+'"></div><div class="pl-info"><div class="pl-name-s">'+p.name+'</div><div class="pl-pos-s">'+(p.finished?"Done":"Sq. "+(p.pos||"-"))+'</div></div>'+(isCur?'<div class="pl-turn-pip" style="background:'+p.color+';box-shadow:0 0 4px '+p.color+'"></div>':"");c.appendChild(row)})}
-function updateBar(){var p=players[ci];if(!p)return;var dot=document.getElementById("turn-dot");dot.style.background=p.color;dot.style.boxShadow="0 0 7px "+p.color+",0 0 16px "+p.color;dot.style.border="2px solid "+p.color;var nm=document.getElementById("turn-name");nm.textContent=p.name;nm.style.color=p.color;document.getElementById("rcn").textContent=p.rolls;updateList()}
+function updateBar(){var p=players[ci];if(!p)return;var dot=document.getElementById("turn-dot");dot.style.background=p.color;dot.style.boxShadow="0 0 7px "+p.color+",0 0 16px "+p.color;dot.style.border="2px solid "+p.color;var nm=document.getElementById("turn-name");nm.textContent=p.name;nm.style.color=p.color;document.getElementById("rcn").textContent=p.rolls;var ppd=document.getElementById("pp-dot");if(ppd){ppd.style.background=p.color;ppd.style.boxShadow="0 0 6px "+p.color;ppd.style.border="2px solid "+p.color;}var ppn=document.getElementById("pp-name");if(ppn){ppn.textContent=p.name;ppn.style.color=p.color;}var ppp=document.getElementById("pp-pos");if(ppp){ppp.textContent="Square "+(p.pos||"—")+" · "+p.rolls+" rolls";}updateList()}
 function addLog(text,type){var c=document.getElementById("log-entries"),e=document.createElement("div");e.className="log-entry"+(type?" log-"+type:"");e.innerHTML=text;c.insertBefore(e,c.firstChild);if(c.children.length>45)c.lastChild.remove()}
 function showPopup(type,data){return new Promise(function(resolve){var ov=document.getElementById("popup-overlay");document.getElementById("popup-card").className=type+"-popup";if(type==="snake"){document.getElementById("popup-icon").textContent="\uD83D\uDC0D";document.getElementById("popup-title").style.color="#ef4444";document.getElementById("popup-title").textContent="\u26A0 "+data.title;document.getElementById("popup-msg").textContent=data.msg;document.getElementById("popup-move").textContent=data.from+" \u2192 "+data.to;document.getElementById("popup-move").style.cssText="background:rgba(239,68,68,.12);color:#f87171;font-family:'Fredoka One',cursive;font-size:.9rem;padding:6px 12px;border-radius:9px;display:inline-block;margin-bottom:18px;border:1px solid rgba(239,68,68,.24);";document.getElementById("popup-continue").style.cssText="background:linear-gradient(135deg,#ef4444,#dc2626);border:none;border-radius:11px;font-family:'Fredoka One',cursive;font-size:.98rem;cursor:pointer;color:white;padding:10px 30px;box-shadow:0 6px 18px rgba(239,68,68,.4);";document.getElementById("popup-continue").textContent="Got it!"}else{document.getElementById("popup-icon").textContent="\uD83E\uDE9C";document.getElementById("popup-title").style.color="#22c55e";document.getElementById("popup-title").textContent="\u2705 "+data.title;document.getElementById("popup-msg").textContent=data.msg;document.getElementById("popup-move").textContent=data.from+" \u2192 "+data.to;document.getElementById("popup-move").style.cssText="background:rgba(34,197,94,.12);color:#4ade80;font-family:'Fredoka One',cursive;font-size:.9rem;padding:6px 12px;border-radius:9px;display:inline-block;margin-bottom:18px;border:1px solid rgba(34,197,94,.24);";document.getElementById("popup-continue").style.cssText="background:linear-gradient(135deg,#22c55e,#16a34a);border:none;border-radius:11px;font-family:'Fredoka One',cursive;font-size:.98rem;cursor:pointer;color:white;padding:10px 30px;box-shadow:0 6px 18px rgba(34,197,94,.4);";document.getElementById("popup-continue").textContent="Awesome!"}ov.classList.add("show");document.getElementById("popup-continue").onclick=function(){ov.classList.remove("show");resolve()}})}
 function confetti(){var cols=["#facc15","#f97316","#ef4444","#22c55e","#3b82f6","#a855f7","#ec4899","#14b8a6"];for(var i=0;i<120;i++){(function(i){setTimeout(function(){var p=document.createElement("div");p.className="confetti-piece";p.style.cssText="left:"+Math.random()*100+"vw;top:-20px;background:"+cols[Math.floor(Math.random()*8)]+";width:"+(Math.random()*10+5)+"px;height:"+(Math.random()*10+5)+"px;animation-duration:"+(Math.random()*2+2)+"s;border-radius:"+(Math.random()>.5?"50%":"3px");document.body.appendChild(p);setTimeout(function(){p.remove()},4500)},i*35)})(i)}}
