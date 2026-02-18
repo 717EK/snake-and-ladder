@@ -485,7 +485,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
 
 
 /* ── iPhone / tall screen (aspect > 16/9): center game in 9:16 box ── */
-@media (min-aspect-ratio: 9/19) and (orientation: portrait) {
+@media (min-aspect-ratio: 8.5/18) and (orientation: portrait) {
   html, body {
     height: 100%;
     background: var(--navy);
@@ -501,20 +501,20 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
     position: relative;
     inset: auto;
     width: 100vw;
-    max-width: calc(100dvh * 9 / 16);
-    height: calc(100vw * 16 / 9);
+    max-width: calc(100dvh * 8.5 / 18);
+    height: calc(100vw * 18 / 8.5);
     max-height: 100dvh;
   }
   #game-screen {
     width: 100vw;
-    max-width: calc(100dvh * 9 / 16);
-    height: calc(100vw * 16 / 9);
+    max-width: calc(100dvh * 8.5 / 18);
+    height: calc(100vw * 18 / 8.5);
     max-height: 100dvh;
     margin: 0 auto;
   }
-  /* Remove bottom gap — hof-bar flush to bottom */
   #hof-bar { margin-bottom: 0; padding-bottom: 6px; }
 }
+
 
 
 
