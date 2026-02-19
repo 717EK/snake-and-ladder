@@ -587,6 +587,19 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
 
 /* JS class fallback for standalone detection */
 
+
+/* JS class fallback for iOS standalone — top safe area only */
+html.standalone #game-screen {
+  margin-top: env(safe-area-inset-top);
+  height: calc(100dvh - env(safe-area-inset-top));
+}
+html.standalone #start-screen {
+  padding-top: env(safe-area-inset-top);
+}
+html.standalone #top-bar {
+  padding-top: 6px;
+}
+
 </style>
 </head>
 <body>
