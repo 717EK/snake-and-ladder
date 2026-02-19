@@ -79,7 +79,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
 
 
 
-#log-panel{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:10px;flex:1;overflow-y:auto;min-height:0;}
+#log-panel{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:10px;flex:1;overflow-y:auto;min-height:0;height:100%;display:flex;flex-direction:column;}
 #log-panel h3{font-family:"Fredoka One",cursive;font-size:.8rem;color:#475569;margin-bottom:6px;text-align:center;}
 .log-entry{font-size:.66rem;font-weight:700;color:#475569;padding:3px 5px;border-radius:5px;margin-bottom:3px;background:rgba(255,255,255,.02);line-height:1.3;}
 .log-entry span{color:#cbd5e1;}
@@ -331,7 +331,9 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
   flex-shrink:0;
   display:flex;
   flex-direction:column;
-  order:-1; /* appears left of center */
+  order:-1;
+  height:100%;
+  align-self:stretch;
 }
 #center-col{
   flex:1;
