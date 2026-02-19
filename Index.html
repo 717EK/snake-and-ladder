@@ -567,34 +567,42 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
 
 /* ── Standalone (home screen app) — safe area for notch & home bar ── */
 @media (display-mode: standalone) {
+  /* Shrink game container to fit between notch and home bar */
+  #game-screen {
+    height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    margin-top: env(safe-area-inset-top);
+  }
+  /* Top-bar: just its normal padding, margin-top on game-screen handles notch */
+  #top-bar {
+    padding-top: 6px;
+  }
+  /* Welcome screen: push below notch */
   #start-screen {
     padding-top: env(safe-area-inset-top);
   }
-  #game-screen {
-    padding-top: env(safe-area-inset-top);
-  }
-  #top-bar {
-    padding-top: calc(env(safe-area-inset-top) + 6px);
-  }
+  /* HOF bar: no extra padding needed, game-screen height excludes home bar area */
   #hof-bar {
-    padding-bottom: calc(env(safe-area-inset-bottom) + 4px);
+    padding-bottom: 4px;
   }
 }
 
 
+
 /* JS class fallback for standalone detection */
+html.standalone #game-screen {
+  height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  margin-top: env(safe-area-inset-top);
+}
 html.standalone #top-bar {
-  padding-top: calc(env(safe-area-inset-top) + 6px);
+  padding-top: 6px;
 }
 html.standalone #start-screen {
   padding-top: env(safe-area-inset-top);
 }
-html.standalone #game-screen {
-  padding-top: env(safe-area-inset-top);
-}
 html.standalone #hof-bar {
-  padding-bottom: calc(env(safe-area-inset-bottom) + 4px);
+  padding-bottom: 4px;
 }
+
 
 </style>
 </head>
